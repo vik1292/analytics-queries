@@ -125,6 +125,10 @@ def build_catalog():
                             business_question = metadata.get('business_question', 'No business question available')
                             tags = metadata.get('tags', [])
                             source_system = metadata.get('source_system', 'N/A')
+                            primary_tables = metadata.get('primary_tables', [])
+                            output_columns = metadata.get('output_columns', [])
+                            filters = metadata.get('filters', [])
+                            assumptions = metadata.get('assumptions', [])
                             grain = metadata.get('grain', 'N/A')
                             owner_team = metadata.get('owner_team', 'N/A')
                             last_validated = metadata.get('last_validated', 'N/A')
@@ -134,16 +138,28 @@ def build_catalog():
                             catalog_content += f"**Business Question:** {business_question}\n\n"
                             catalog_content += f"**Details:**\n"
                             catalog_content += f"- **ID:** `{query_id}`\n"
+                            if tags:
+                                tags_str = ', '.join([f"`{tag}`" for tag in tags])
+                                catalog_content += f"- **Tags:** {tags_str}\n"
                             catalog_content += f"- **Source System:** {source_system}\n"
+                            if primary_tables:
+                                primary_tables_str = ', '.join([f"`{table}`" for table in primary_tables])
+                                catalog_content += f"- **Primary Tables:** {primary_tables_str}\n"
+                            if output_columns:
+                                output_columns_str = ', '.join([f"`{col}`" for col in output_columns])
+                                catalog_content += f"- **Output Columns:** {output_columns_str}\n"
+                            if filters:
+                                filters_str = ', '.join([f"`{flt}`" for flt in filters])
+                                catalog_content += f"- **Filters:** {filters_str}\n"
+                            if assumptions:
+                                assumptions_str = ' '.join(assumptions)
+                                catalog_content += f"- **Assumptions:** {assumptions_str}\n"
                             catalog_content += f"- **Grain:** {grain}\n"
                             catalog_content += f"- **Owner Team:** {owner_team}\n"
                             catalog_content += f"- **Last Validated:** {last_validated}\n"
 
-                            if tags:
-                                tags_str = ', '.join([f"`{tag}`" for tag in tags])
-                                catalog_content += f"- **Tags:** {tags_str}\n"
-
                             catalog_content += "\n"
+                            
                         else:
                             # Fallback if no metadata found
                             catalog_content += f"#### [{query_file.name}](../{rel_path})\n"
