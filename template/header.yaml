@@ -1,0 +1,27 @@
+---
+id: nameof_dataset
+name:""Descriptive Name of the Dataset"
+tags:
+  - tag1
+  - tag2
+business_question: "What is the business question this answers?"
+source_system: "Source system name"
+primary_table:
+  - schmea.table_name
+output_columns:
+  - column1
+  - column2
+  - column3
+filters:
+  - filter1
+  - filter2
+  - filter3
+assumptions:
+  - assumption1
+  - assumption2
+  - assumption3
+grain: "The grain of the data (monthly, daily, transactional, etc.)"
+last_validated: "YYYY-MM-DD"
+owner_team: "Team Name"
+owner_contact: "contact@example.com"
+---
